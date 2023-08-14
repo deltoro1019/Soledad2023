@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mapa de Puestos de Votación en Soledad, Atlántico</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #map {
+      width: 80%;
+      height: 600px;
+    }
+    #info-table {
+      width: 80%;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    /* Estilo para resaltar la fila seleccionada */
+    .selected {
+      background-color: #f0f0f0;
+    }
+  </style>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="container">
+    <h1>PUESTOS DE VOTACIÓN SOLEDAD</h1>
+    <div id="map"></div>
+    <div id="info-table">
+      <table id="puestos-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Información</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Las filas se agregarán dinámicamente mediante JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
