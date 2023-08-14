@@ -1,7 +1,6 @@
-
 // Datos de los puestos de votación con latitud, longitud e información
 const puestosDeVotacion = [
- {nombre: "I.E.TEC.JOSE CASTILLO BOLIVAR", latitud: 10.891466385672564, longitud: -74.80776362400663,  informacion:"958 Votos "},
+  {nombre: "I.E.TEC.JOSE CASTILLO BOLIVAR", latitud: 10.891466385672564, longitud: -74.80776362400663,  informacion:"958 Votos "},
 {nombre: "I.E.BICENTENARIO DE SOLEDAD", latitud: 10.89272505339485, longitud: -74.79753806729623,  informacion:"799 Votos "},
 {nombre: "I.E.JHON F. KENNEDY", latitud: 10.9132787121064, longitud: -74.77177488087351,  informacion:"752 Votos "},
 {nombre: "I.E.NTRA.SRA LAS MISERICORDIAS", latitud: 10.91572006916898, longitud: -74.77063052757114,  informacion:"751 Votos "},
@@ -58,14 +57,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 const markers = [];
 
-// ... (resto del código previo)
-
-// Agregar filas a la tabla con los datos de los puestos de votación
 puestosDeVotacion.forEach((puesto, index) => {
   const row = document.createElement('tr');
   row.innerHTML = `
     <td>${puesto.nombre}</td>
     <td>${puesto.informacion}</td>
+    <td><a href="#" class="route-link" data-lat="${puesto.latitud}" data-lng="${puesto.longitud}">Cómo llegar</a></td>
   `;
   const tableBody = document.querySelector('#puestos-table tbody');
   tableBody.appendChild(row);
@@ -85,5 +82,17 @@ puestosDeVotacion.forEach((puesto, index) => {
         tableRow.classList.remove('selected');
       }
     });
+  });
+});
+
+// Agregar funcionalidad para "Cómo llegar"
+const routeLinks = document.querySelectorAll('.route-link');
+routeLinks.forEach(link => {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    const lat = parseFloat(this.getAttribute('data-lat'));
+    const lng = parseFloat(this.getAttribute('data-lng'));
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+    window.open(url, '_blank');
   });
 });
